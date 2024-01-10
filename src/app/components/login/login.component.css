@@ -1,0 +1,20 @@
+#loginDiv {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 4%;
+}
+
+.w-full .login {
+    background: #976574;
+    border-color: #976574;
+}
+
+.login {
+    margin-left: auto;
+    margin-right: auto;
+    width: 65vw;
+}
+
+.text-blue-500 {
+    color: #b46e83 !important;
+}

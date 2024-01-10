@@ -1,0 +1,23 @@
+:host {
+    max-width: 33.33%;
+  }
+
+  .card-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+.pToast{
+  text-align: center;
+}
+.BuyersTable{
+  width: 900px;
+}
+.p-button{
+  background-color: #a26d78;
+}
+.organization-chart {
+  display: inline-block;
+  margin-right: 10px; /* Adjust the spacing as needed */
+  border-radius: 10px; /* Adjust the border radius as desired */
+}

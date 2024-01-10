@@ -1,0 +1,72 @@
+
+<p-toolbar styleClass="mb-4">
+    <ng-template id="title" pTemplate="left">
+        <h1 class="title"> רשימת מתנות לרכישה</h1>
+    </ng-template>
+    <ng-template pTemplate="right">
+        <button pButton pRipple label="מעבר לסל" icon=" pi pi-shopping-bag" class="p-button-success mr-2"
+            (mouseover)="showCart()" (click)="moveToCart()"></button>
+    </ng-template>
+</p-toolbar>
+<div class="filter">
+    <br>
+    <h3 id="sort" class="title">אפשרוית מיון:</h3>
+    <div class="field-checkbox-container">
+        <div *ngFor="let category of categories" class="field-checkbox">
+            <p-checkbox [label]="category" name="group" [value]="category" [(ngModel)]="selectedCategories"
+                (onChange)="getPresentsByCategory(selectedCategories)"></p-checkbox>
+        </div>
+    </div>
+    <div class="card flex justify-content-center">
+        <p-dropdown [options]="sortBy" [(ngModel)]="selectedSort" [showClear]="true" placeholder="אפשרויות מיון"
+            (onChange)="onSortChange()"  (onClear)="onClearDropdown()"></p-dropdown>
+    </div>
+
+    <span class="p-input-icon-left">
+        <i class="pi pi-search"></i>
+        <input class="inputB" pInputText type="text" placeholder="אני רוצה לרכוש..." [(ngModel)]="name"
+            (blur)="searchByName(name)" />
+    </span>
+</div>
+<h1 class="noProducts" *ngIf="noProducts==true">מצטערים,לא נמצאו תוצאות....</h1>
+<div class="card-container flex flex-row flex-wrap">
+    <p-toast class="pToast" ></p-toast>
+    <ng-container *ngFor="let item of allProducts">
+        <p-card class="my-card m-3" header="{{item.name}}" subheader="קוד מתנה: {{item.presentId}} מחיר: {{item.price  | currency:'ILS'}}
+            מתנת: {{item.donors}} תיאור:{{item.description}} קטגוריה:{{item.category}}"
+            [style]="{ width: '400px', height:'470' }" [autofocus]="true" class="my-element">
+            <ng-template pTemplate="header">
+                <p-image src="../../../assets/images/{{item.imagUrl}}" [preview]="true" alt="Image" width="250"height="250" >
+                </p-image>
+            </ng-template>
+           
+                <button pButton pRipple icon="pi pi-cart-plus" class="p-button-rounded p-button-warning"
+                    (click)="addToCart(item.presentId)"></button>
+           
+        </p-card>
+        <br>
+    </ng-container>
+</div>
+
+<div class="card flex justify-content-center">
+    <p-dialog [(visible)]="visible" [style]="{width: '25vw'}">
+        <div class="card xl:flex xl:justify-content-center">
+            <p-orderList [value]="products" [listStyle]="{ height: '25rem' }" header="העגלה שלך">
+                <ng-template let-product pTemplate="item">
+                    <div class="flex flex-wrap p-2 align-items-center gap-3">
+                        <img src="../../../assets/images/{{product.imagUrl}}" [alt]="product.name"
+                            class="w-4rem shadow-2 flex-shrink-0 border-round" />
+                        <div class="flex-1 flex flex-column gap-2">
+                            <span class="font-bold">{{ product.name }}</span>
+                            <div class="flex align-items-center gap-2">
+                                <i class="pi pi-tag text-sm"></i>
+                                <span>{{ product.presentId }}</span>
+                            </div>
+                        </div>
+                        <span class="font-bold text-900">{{ product.price | currency:'ILS'}}</span>
+                    </div>
+                </ng-template>
+            </p-orderList>
+        </div>
+    </p-dialog>
+</div>

@@ -1,0 +1,103 @@
+
+<div class="card flex justify-content-center">
+    <p-button (click)="showTotalIncome()" icon="pi pi-external-link" label="  סך ההכנסות למכירה  " [text]="true" severity="info"></p-button>
+    <p-dialog header="סך ההכנסות הכולל למכירה" [(visible)]="visible" [style]="{width: '25vw'}">
+        <p>
+<strong>{{totalIncome | currency:'ILS'}}</strong>
+        </p>
+    </p-dialog>
+</div>
+<p-tabView>
+    <p-tabPanel header="דוחות רכישה"> 
+        <ng-container *ngFor="let item of data"> 
+        <p-organizationChart [value]="[item]" class="organization-chart">
+            <ng-template let-node pTemplate="default">
+                <div class="p-2 text-center">
+                    <img src="../../../assets/images/{{node.data}}"  width="32" />
+                    <div>{{ node.data.name }}</div>
+                    <div class="p-2">{{ node.label }}</div>
+                   
+                </div>
+            </ng-template>
+        </p-organizationChart>
+        </ng-container>
+    </p-tabPanel>
+    <p-tabPanel header="רשימת הנכנסים להגרלה">
+        <ng-template pTemplate="content">   
+            <div class="BuyersTable">    
+            <p-table  [value]="myBuyers" styleClass="p-datatable-striped" [tableStyle]="{'min-width': '50rem'}">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th>שם פרטי</th>
+                        <th>שם משפחה</th>
+                        <th>פלאפון</th>
+                        <th>אימייל</th>
+                        <th>כתובת</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-buyer>
+                    <tr>
+                        <td>{{buyer.userFirstName}}</td>
+                        <td>{{buyer.userLastName}}</td>
+                        <td>{{buyer.userPhone}}</td>
+                        <td>{{buyer.userEmail}}</td>
+                        <td>{{buyer.userAddress}}</td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        
+        </div>
+        
+        
+        
+        
+        </ng-template>
+    </p-tabPanel>
+    <p-tabPanel header="הגרלה">
+        <ng-template pTemplate="content">
+            <!-- <p-messages></p-messages> -->
+            <p-toast class="pToast" ></p-toast>
+            <div class="card-container">
+                <ng-container *ngFor="let item of allProducts">
+                    <p-panel [toggleable]="true"  >
+                        <ng-template pTemplate="header">
+                            <div class="flex align-items-center gap-2">
+                                
+                                <p-avatar image="../../../assets/images/{{item.imagUrl}}" size="large" shape="circle" />
+                                <span class="font-bold">{{item.name}}</span>
+                            </div>
+                        </ng-template>
+                        <ng-template pTemplate="footer">
+                            <div class="flex flex-wrap align-items-center justify-content-between gap-3">
+                                <div class="flex align-items-center gap-2">
+                                    
+                                    <p-button icon="pi pi-gift" [rounded]="true"  [outlined]="true" (click)="makeLottery(item.presentId)"    ></p-button>
+                                    <p-button icon="pi pi-user" [rounded]="true"  [outlined]="true" (click)="showPresentWinner(item.presentId)"></p-button>
+                                </div>
+                                <span class="p-text-secondary">{{item.id}}</span>
+                            </div>
+                        </ng-template>
+                        <ng-template pTemplate="icons">
+                            <button class="p-panel-header-icon p-link mr-2" (click)="menu.toggle($event)">
+                                <span class="pi pi-cog"></span>
+                            </button>
+                            <p-menu #menu id="config_menu" [model]="items" [popup]="true" />
+                        </ng-template>
+                        <p class="m-0">
+                            {{item.description}}
+                        </p>
+                    </p-panel>
+                    <br>
+                </ng-container>
+            
+            </div>      
+        </ng-template>
+    </p-tabPanel>
+</p-tabView>
+
+
+
+
+
+
+

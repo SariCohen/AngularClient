@@ -1,0 +1,98 @@
+<p-toolbar styleClass="mb-4">
+    <ng-template id="title" pTemplate="left">
+        <h1 class="title">העגלה שלך </h1>
+    </ng-template>
+</p-toolbar>
+<div class="cart-page-container">
+    <p-toast class="pToast"></p-toast>
+    <p-dataView #dv [value]="prodsItems" [layout]="layout">
+        <ng-template pTemplate="header">
+            <div class="flex justify-content-end">
+                <p-dataViewLayoutOptions [layout]="layout"></p-dataViewLayoutOptions>
+
+            </div>
+        </ng-template>
+        <ng-template let-product pTemplate="listItem">
+            <div class="col-12">
+                <div class="flex flex-column xl:flex-row xl:align-items-start p-4 gap-4">
+                    <div class="card flex justify-content-center gap-3">
+                        <p-checkbox binary="true"
+                            (onChange)="updateTotalAmount(product.price,product.presentId,product.quantity)"></p-checkbox>
+                    </div>
+                    <img class="w-9 sm:w-16rem xl:w-10rem shadow-2 block xl:block mx-auto border-round"
+                        [src]=" product.imagUrl" [alt]="product.name" />
+                    <div
+                        class="flex flex-column sm:flex-row justify-content-between align-items-center xl:align-items-start flex-1 gap-4">
+                        <div class="flex flex-column align-items-center sm:align-items-start gap-3">
+
+                            <div class="text-2xl font-bold text-900">{{ product.name }}</div>
+                            <p-rating [ngModel]="product.rating" [readonly]="true" [cancel]="false"></p-rating>
+                            <div class="flex align-items-center gap-3">
+                                <span class="flex align-items-center gap-2">
+                                    <i class="pi pi-tag"></i>
+                                    <span class="font-semibold">{{ product.presentId }}</span>
+                                </span>
+                            </div>
+                        </div>
+                              <div class="button-container">
+                                <p-button icon="pi pi-plus" (onClick)="onIncrement(product.presentId)" severity="help"></p-button>
+                                <input pInputText id="inputNumber"  [(ngModel)]="product.quantity">
+                                <p-button (onClick)="onDecrement(product.presentId)" icon="pi pi-minus" severity="secondary"></p-button>
+                              </div>
+
+                        <div class="flex sm:flex-column align-items-center sm:align-items-end gap-3 sm:gap-2">
+                            <span class="text-2xl font-semibold">{{ product.price | currency:'ILS' }}</span>
+                            <button pButton icon="pi pi-trash"
+                                class="md:align-self-end mb-2 p-button-rounded p-button-warning"
+                                (click)="removeFromCart(product.presentId)"></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </ng-template>
+        <ng-template let-product pTemplate="gridItem">
+            <div class="col-12 sm:col-6 lg:col-12 xl:col-4 p-2">
+                <div class="p-4 border-1 surface-border surface-card border-round">
+                    <div class="flex flex-wrap align-items-center justify-content-between gap-2">
+                        <span class="flex align-items-center gap-2">
+                            <i class="pi pi-tag"></i>
+                            <span class="font-semibold">{{ product.category }}</span>
+                        </span>
+                    </div>
+                    <div class="flex flex-column align-items-center gap-3 py-5" class="image-container">
+                        <img id="my-picture" class="product-image" class="w-9 shadow-2 border-round"
+                            [src]="product.imagUrl" [alt]="product.name" />
+                        <div class="text-2xl font-bold">{{ product.name }}</div>
+                        <p-rating [ngModel]="product.rating" [readonly]="true" [cancel]="false"></p-rating>
+                    </div>
+                    <div class="flex align-items-center justify-content-between">
+                        <span class="text-2xl font-semibold">{{ product.price | currency:'ILS' }}</span>
+                        <button pButton icon="pi pi-trash" class="p-button-rounded p-button-warning"
+                            (click)="removeFromCart(product.id)"></button>
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+    </p-dataView>
+</div>
+
+<p-card class="payment-card">
+    <ng-template pTemplate="header">
+        <div class="surface-overlay px-2 lg:px-5 flex align-items-stretch relative border-bottom-1 surface-border"
+            style="min-height: 80px;">
+            <h1>סיכום</h1>
+            <i class="pi pi-shopping-cart mr-4 p-text-secondary" pBadge style="font-size: 2rem" value="{{numCard}}"></i>
+        </div>
+        <br>
+    </ng-template>
+    מספר כרטיסים :{{numCard}}
+    <ng-template pTemplate="footer">
+        סך הכל: {{totalAmount}}
+        <br>
+        <br>
+        <img src="../../../assets/images/לשלם באמצעות.png" [style]="{ width: '540px', height:'200px' }">
+        <p-button label="({{numCard}})לתשלום בקופה" icon="pi pi-shopping-cart" severity="danger"
+            (click)="moveToPayment()" class="btn"></p-button>
+    </ng-template>
+</p-card>

@@ -1,0 +1,31 @@
+#registerDiv{
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 4%;
+}
+.p-button{
+    background: #976574;
+    border-color: #976574;
+}
+.w-full {
+    width: 41.7% !important;
+}
+.reg{
+    margin-left: auto;
+    margin-right: auto;
+}
+.grid {
+    justify-content: center;
+}
+.custom-password-field {
+    width: 100%;
+  }
+::ng-deep .p-password-container .p-inputtext {
+    width: 100%;
+  }
+  #password {
+    width: 100%;
+  }
+  
+  
+  

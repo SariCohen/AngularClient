@@ -1,0 +1,73 @@
+<p-toolbar styleClass="mb-4">
+    <ng-template pTemplate="center">
+        <button pButton pRipple label="חדש" icon="pi pi-plus" class="p-button-success mr-2"
+            (click)="openNew()"></button>
+    </ng-template>
+    <ng-template id="title" pTemplate="left">
+        <h1 class="title"> רשימת מתנות</h1>
+    </ng-template>
+</p-toolbar>
+
+<div class="my-body">
+    <app-edit-add-product [(isVisible)]="productDialog" [(editProd)]="product"  [(selectedDonors)]="selectedDonors" [selectProd]="selectedProducts"
+        [(listProducts)]="products" [open]="openText" (updatedList)="changeShowTable($event)" [(update)]="isUpdate"
+        (Visible)="changePdialog($event)"></app-edit-add-product>
+    <!-- Table: -->
+    <p-toast class="pToast" ></p-toast>
+    <p-table #dt [(value)]="products" [rows]="8" [paginator]="true" [globalFilterFields]="['name','donor','price']"
+        [(selection)]="selectedProducts" [rowHover]="true" dataKey="id"
+        currentPageReportTemplate="מציג {first} עד {last} מתוך {totalRecords} פריטים" [showCurrentPageReport]="true">
+        <ng-template pTemplate="caption">
+            <div class="flex align-items-center justify-content-between">
+                <h3 class="m-0">מכירה סינית-מוצרים</h3>
+                <span class="p-input-icon-left">
+                    <i class="pi pi-search"></i>
+                    <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
+                        placeholder="חפש..." />
+                </span>
+            </div>
+        </ng-template>
+
+        <ng-template pTemplate="header">
+            <tr>
+                <th style="width: 1rem">
+                    <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                </th>
+                <th pSortableColumn="presentId">קוד <p-sortIcon field="presentId"></p-sortIcon></th>
+                <th pSortableColumn="name">שם <p-sortIcon field="name"></p-sortIcon></th>
+                <th pSortableColumn="price">עלות כרטיס<p-sortIcon field="price"></p-sortIcon></th>
+                <th pSortableColumn="donors">תורם <p-sortIcon field="donors"></p-sortIcon></th>
+                <th pSortableColumn="description">תיאור <p-sortIcon field="description"></p-sortIcon></th>
+                <th pSortableColumn="category">קטגוריה <p-sortIcon field="category"></p-sortIcon></th>
+                <th></th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-product>
+            <tr>
+                <td>
+                    <p-tableCheckbox [value]="product"></p-tableCheckbox>
+                </td>
+                <td>{{product.presentId}}</td>
+                <td>{{product.name}}</td>
+                <td>{{product.price | currency:'ILS'}}</td>
+                <td>{{product.donors}}</td>
+                <td>{{product.description}}</td>
+                <td>{{product.category}}</td>
+                <td>
+                    <!-- עריכת מוצר -->
+                    <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"
+                        (click)="editProduct(product)"></button>
+                    <!-- מחיקת מוצר -->
+                    <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
+                        (click)="deleteProduct(product)"></button>
+                </td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="summary">
+            <div class="flex align-items-center justify-content-between">
+                סך הכל - {{products ? products.length : 0 }} מתנות.
+            </div>
+        </ng-template>
+    </p-table>
+    <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
+</div>

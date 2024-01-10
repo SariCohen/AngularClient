@@ -1,0 +1,16 @@
+.table-header {
+    display: flex;
+    justify-content: space-between;
+}
+.my-body{
+direction: rtl;
+
+
+}
+.p-datatable .p-datatable-tbody > tr > td {
+    direction: rtl !important;
+text-align: center!important;
+}
+#title{
+    text-align: center;
+}

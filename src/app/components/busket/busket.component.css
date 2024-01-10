@@ -1,0 +1,97 @@
+#my-picture{
+  width: 100%;
+  height: 200px;
+}
+#nis{
+  width: 5cm;
+}
+.cart-page-container {
+  width: 68vw; 
+  float: right;
+}
+.payment-card{
+  height: 40vh;
+  width: 25vw; 
+  float: left;
+}
+body {
+  margin: 0;
+  padding: 0;
+}
+.payment-image{
+  height: 20vh;
+  width: 25vw; 
+  float: left;
+}
+.quantity-btn{
+  width: 30px;
+  height: 30px;
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 16px; 
+}
+.quantity-label {
+  width: 40px;
+  text-align: center;
+  margin: 0 10px;
+}
+
+#my-picture {
+width: 100%;
+height: 200px;
+}
+#nis {
+width: 5cm;
+}
+.cart-page-container {
+width: 68vw;
+float: right;
+}
+.payment-card {
+height: 40vh;
+width: 25vw;
+float: left;
+}
+body {
+margin: 0;
+padding: 0;
+}
+.payment-image {
+height: 20vh;
+width: 25vw;
+float: left;
+}
+.p-inputtext .countity{
+
+width: 1.5cm;
+}
+.btn{
+  margin-right: 4cm;
+}
+
+.button-container {
+  width: 100px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+
+
+.button-container p-button {
+  margin: 0;
+}
+.plus{
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+#inputNumber{
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  width: 6vw;
+}

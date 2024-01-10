@@ -1,0 +1,81 @@
+{{update | json}}
+ <p-dialog  (onHide)="sendVisible()" [(visible)]="isVisible" [style]="{width: '450px'}" [header]="open" [modal]="true"
+    styleClass="p-fluid">
+    <ng-template pTemplate="content">
+        <!-- <div class="p-field">
+            <label for="id">קוד</label>
+            <input type="number" pInputText id="presentId" placeholder={{editProd.presentId}} required autofocus disabled />
+        </div> -->
+<!-- ///////////////////////////////////////////////////////////////////////////////////////////////// -->
+     
+
+<div class="p-field">
+            <label for="name">שם</label>
+            <input type="text" pInputText id="name" [(ngModel)]="editProd.name" required autofocus />
+            <small class="p-error" *ngIf="submitted && !editProd.name ">שדה חובה.</small>
+           
+                <small class="p-error" *ngIf="(submitted && isNameExists()==true)&&(update==false)">מתנה כבר קיימת.</small>
+     
+        
+            
+        </div>
+        
+<!-- ////////////////////////////////////////////////////////////////////////////// -->
+<div class="p-field">
+    <label for="category">קטגוריה</label>
+    <input type="text" pInputText id="category" [(ngModel)]="editProd.category" required autofocus />
+    <small class="p-error" *ngIf="submitted && !editProd.name ">שדה חובה.</small>
+</div>
+
+<!-- ///////////////////////////////////////////////////////////////////////////////// -->
+<div class="p-field">
+    <label for="description">תיאור</label>
+    <input type="text" pInputText id="description" [(ngModel)]="editProd.description" required autofocus />
+    <small class="p-error" *ngIf="submitted && !editProd.description ">שדה חובה.</small>
+</div>
+<!-- ////////////////////////////////////////////////////////////////////////////// optionLabel="donorName"/-->
+<div *ngIf="!this.editProd.presentId"  class="p-field">
+    <p-multiSelect [options]="donorsString" [(ngModel)]="selectedDonors" [filter]="true"  placeholder="בחר תורם"></p-multiSelect>
+</div>
+<!-- ////////////////////////////////////////////////////////////////////////////////////////////// -->
+<div class="p-field">
+    <label for="imagUrl">קישור לתמונה</label>
+    <input type="text" pInputText id="imagUrl" [(ngModel)]="editProd.imagUrl" required autofocus />
+    <small class="p-error" *ngIf="submitted && !editProd.imagUrl ">שדה חובה.</small>
+</div>
+
+<!-- //////////////////////////////////////////////////////////////////////////////// -->
+<!-- 
+        <div class="p-field">
+            <label for="donors">תורם</label>
+            <p-dropdown [(ngModel)]="editProd.donors" inputId="donors" [options]="donors" placeholder="תורם"
+                
+            (onChange)="handleDonorChange($event)">
+                <ng-template let-option pTemplate="item">
+                    <span [class]="'editProd-badge status-' + option">{{option.donorName}}</span>
+                    <small class="p-error" *ngIf="submitted && !editProd.donor">שדה חובה.</small>
+                </ng-template>
+            </p-dropdown>
+            <label *ngIf="showInputField">הכנס תורם</label>
+            <input pInputText *ngIf="showInputField" [(ngModel)]="editProd.donors">
+            <small class="p-error" *ngIf="submitted && !editProd.donor">שדה חובה.</small>
+        </div> -->
+    
+<!-- /////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+        <div class="p-formgrid p-grid">
+            <div class="p-field p-col">
+                <label for="price">עלות כרטיס</label>
+                <input pInputText id="price" type="number" [(ngModel)]="editProd.price" [showButtons]="true"
+                    inputId="stacked" mode="currency" currency="ILS" [min]="10"  >
+            <small class="p-error" *ngIf="submitted && !editProd.price">שדה חובה.</small>
+            </div>
+        </div>
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="מחק" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+        <button pButton pRipple label="שמור" icon="pi pi-check" class="p-button-text" (click)="saveProduct()"></button>
+    </ng-template>
+
+</p-dialog> 
+<p-toast class="pToast" ></p-toast>

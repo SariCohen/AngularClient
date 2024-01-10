@@ -1,0 +1,119 @@
+<p-toolbar styleClass="mb-4">
+  <ng-template id="title" pTemplate="left">
+    <h1 class="title"> רשימת תורמים</h1>
+  </ng-template>
+  <ng-template pTemplate="right">
+  <button (click)="showDialog()" pButton pRipple label="הוספת תורם" icon="pi pi-plus"
+  class="p-button-success mr-2"></button>
+  </ng-template>
+</p-toolbar>
+<div class="filter">
+  <br>
+  <h3 id="sort" class="title">אפשרוית מיון:</h3>
+  <div class="card flex flex-wrap justify-content-center gap-3 sortInput">
+    <span class="p-input-icon-left">
+        <i class="pi pi-search"></i>
+        <input type="text" pInputText [(ngModel)]="email" placeholder="חפש תורם לפי אימייל..." (blur)="searchDonorByEmail(email)"/>
+    </span>
+  </div>
+  <br>
+    <div class="card flex flex-wrap justify-content-center gap-3 sortInput">
+      <span class="p-input-icon-left">
+          <i class="pi pi-search"></i>
+          <input type="text" pInputText [(ngModel)]="present" placeholder="חפש תורם לפי מתנה שתרם..." (blur)="searchDonorByPresent(present)"/>
+      </span>
+    </div>
+    <br>
+      <div class="card flex flex-wrap justify-content-center gap-3 sortInput">
+        <span class="p-input-icon-left">
+            <i class="pi pi-search"></i>
+            <input type="text" pInputText [(ngModel)]="name" placeholder="חפש תורם לפי שם..."(blur)="searchDonorByName(name)"/>
+        </span>
+      </div> 
+      <br>
+</div>
+<h1 *ngIf="donorsNotFound==true" class="donorsNotFound"  >מצטערים,לא נמצאו תוצאות...</h1>
+<div class="card-container flex flex-row flex-wrap">
+  <p-toast class="pToast" ></p-toast>
+  <ng-container *ngFor="let item of donors">
+    <p-card class="my-card m-3" header="{{item.donorName}} {{item.donorId}}" subheader="סוג התרומה:{{item.donationType}}" [style]="{ width: '360px' }"
+      [autofocus]="true" class="my-element">
+      <ng-template pTemplate="header">
+        <img class="card-image" src="../../../assets/images/{{item.imageUrl}}" />
+        <h3> פרטים:</h3>
+        <h5>{{"פלאפון:"+item.donorPhone}}</h5>
+        <h5>{{"אימייל:"+item.donorEmail}}</h5>
+        <h5>{{"רשימת התרומות:" +item.donations}}</h5>
+      </ng-template>
+      <ng-template pTemplate="footer">
+        <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
+          (click)="deleteDonor(item.donorId)"></button>
+      </ng-template>
+    </p-card>
+    <br>
+  </ng-container>
+</div>
+<p-dialog styleClass="p-fluid" dir="rtl" header="הוספת תורם" [(visible)]="visible" [style]="{width: '25vw'}">
+  <div class="p-field">
+    <label for="label">מספר זהות </label>
+    <br>
+    <p-inputMask id="id" class="idInput" mask="999999999" [(ngModel)]="myDonor.donorId" required autofocus></p-inputMask>
+
+    <br>
+    <small class="p-error" *ngIf="submitted &&!myDonor.donorId">שדה חובה.</small>
+  </div>
+  <br>
+  <div class="p-field">
+    <label for="label">שם תורם</label>
+    <br>
+    <input type="text" pInputText id="name" [(ngModel)]="myDonor.donorName" required autofocus />
+    <br>
+    <small class="p-error" *ngIf=" submitted &&!myDonor.donorName ">שדה חובה.</small>
+  
+  </div>
+  <br>
+  <div class="p-field">
+    <label for="imageUrlP">כתובת תמונה</label>
+    <br>
+    <input type="text" pInputText id="imageUrl" [(ngModel)]="myDonor.imageUrl" required autofocus />
+    <br>
+    <small class="p-error" *ngIf="submitted &&!myDonor.imageUrl">שדה חובה.</small>
+  </div>
+  <br>
+  <div class="p-field">
+    <label for="value">סוג התרומה</label>
+    <br>
+    <input type="text" pInputText id="value" [(ngModel)]="myDonor.donationType" required autofocus />
+    <br>
+    <small class="p-error" *ngIf=" submitted && !myDonor.donationType">שדה חובה.</small>
+  </div>
+  <br>
+  <div class="p-field">
+    <label for="value">כתובת אימייל</label>
+    <br>
+    <input type="text" pInputText id="value" [(ngModel)]="myDonor.donorEmail" required autofocus />
+    <br>
+    <small class="p-error" *ngIf="submitted && !myDonor.donorEmail">שדה חובה.</small>
+    <br>
+    <small class="p-error" *ngIf="submitted  &&myDonor.donorEmail&&!validateEmail(myDonor.donorEmail)"> פורמט אימייל שגוי.</small>
+  </div>
+  <br>
+  <div class="p-field">
+    <label for="value">טלפון תורם</label>
+    <br>
+    <p-inputMask id="phone" mask="(999) 999-9999" [(ngModel)]="myDonor.donorPhone" required autofocus></p-inputMask>
+                    <br>
+    <small class="p-error" *ngIf="submitted && !myDonor.donorPhone">שדה חובה.</small>
+  </div>
+  <br>
+  <div class="p-field">
+    <label for="value">רשימת תרומות</label>
+    <br>
+    <input type="text" pInputText id="value" [(ngModel)]="myDonor.donations" required autofocus />
+  
+  </div>
+  <br>
+  <button pButton pRipple label="מחק" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+  <button pButton pRipple label="שמור" icon="pi pi-check" class="p-button-text" (click)="saveDonor()"></button>
+</p-dialog>
+

@@ -1,0 +1,60 @@
+<body>
+    <div id="registerDiv" dir="rtl" class="surface-card p-4 shadow-2 border-round w-full lg:w-6 ">
+        <div class="text-center mb-5">
+            <img src="assets/images/login logo.jpg" alt="Image" height="50" class="mb-3">
+            <div class="text-900 text-3xl font-medium mb-3">ברוך הבא</div>
+        </div>
+        <div class="register">
+            <div class="grid grid-cols-9 gap-2 center">
+                <input id="userName" type="text" [(ngModel)]="myUser.userName" placeholder="*שם משתמש" pInputText
+                    class="w-full mb-3" pTooltip="הכנס שם משתמש" tooltipPosition="top">
+
+                <small class="p-error" *ngIf="submitted && !myUser.userName">שדה חובה.</small>
+
+                <p-password id="password" type="password" [(ngModel)]="myUser.userPassword" placeholder="*סיסמא"
+                    class="w-full mb-3" pTooltip="הכנס סיסמא" [style]="{'width':'100%'}" [inputStyle]="{'width':'100%'}"
+                    tooltipPosition="top">סיסמא</p-password>
+                <small class="p-error" *ngIf="submitted && !myUser.userPassword">שדה חובה.</small>
+
+                <input id="firstName" type="text" [(ngModel)]="myUser.userFirstName" placeholder="*שם פרטי" pInputText
+                    class="w-full mb-3" pTooltip="הכנס שם פרטי" tooltipPosition="top">
+                <small class="p-error" *ngIf="submitted && !myUser.userPassword">שדה חובה.</small>
+
+                <input id="lastName" type="text" [(ngModel)]="myUser.userLastName" placeholder="*שם משפחה" pInputText
+                    class="w-full mb-3" pTooltip="הכנס שם משפחה" tooltipPosition="top">
+                <small class="p-error" *ngIf="submitted && !myUser.userLastName">שדה חובה.</small>
+
+                <input id="email1" type="email" [(ngModel)]="myUser.userEmail" placeholder="*אימייל" pInputText
+                    class="w-full mb-3" pTooltip="הכנס אימייל" tooltipPosition="top">
+                <small class="p-error" *ngIf="submitted && myUser.userEmail && !validateEmail(myUser.userEmail)">פורמט
+                    אימייל לא תקין.</small>
+                <small class="p-error" *ngIf="submitted && !myUser.userEmail">שדה חובה.</small>
+
+                <p-inputMask id="phone" mask="(999) 999-9999" class="w-full mb-3" [style]="{'width':'100%'}"
+                    [(ngModel)]="myUser.userPhone" placeholder="*פלאפון" pTooltip="הכנס פלאפון"
+                    tooltipPosition="top"></p-inputMask>
+                <small class="p-error" *ngIf="submitted && !myUser.userPhone">שדה חובה.</small>
+
+                <input id="address" type="text" [(ngModel)]="myUser.userAddress" placeholder="*כתובת" pInputText
+                    class="w-full mb-3" pTooltip="הכנס כתובת" tooltipPosition="top">
+                <small class="p-error" *ngIf="submitted && !myUser.userAddress">שדה חובה.</small>
+
+                <input id="city" type="text" [(ngModel)]="myUser.userCity" placeholder="*עיר" pInputText
+                    class="w-full mb-3" pTooltip="הכנס עיר" tooltipPosition="top">
+                <small class="p-error" *ngIf="submitted && !myUser.userCity">שדה חובה.</small>
+
+                <input id="country" type="text" [(ngModel)]="myUser.userCountry" placeholder="*מדינה" pInputText
+                    class="w-full mb-3" pTooltip="הכנס מדינה" tooltipPosition="top">
+                <small class="p-error" *ngIf="submitted && !myUser.userCountry">שדה חובה.</small>
+
+                <p-inputMask id="phone" mask="9999999" class="w-full mb-3" [style]="{'width':'100%'}"
+                    [(ngModel)]="myUser.PostalCode" placeholder="*מיקוד" pTooltip="הכנס מיקוד"
+                    tooltipPosition="top"></p-inputMask>
+                <small class="p-error" *ngIf="submitted && !myUser.PostalCode">שדה חובה.</small>
+
+                <button class="reg w-full mb-3" pButton pRipple label="הרשמה" icon="pi pi-user"
+                    (click)="register()"></button>
+            </div>
+        </div>
+    </div>
+</body>

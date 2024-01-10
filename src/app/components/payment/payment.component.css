@@ -1,0 +1,18 @@
+.paymentBlock{
+    height: 100vh;
+    width: 60vw; 
+    float: right;
+}
+
+.lg\:w-6 {
+    width: 30% !important;
+    margin-left: auto;
+    margin-right: auto;
+}
+.p-button{
+    background:  #976574;
+    border-color: #976574;
+}
+#payment-Div{
+    text-align: center;
+}

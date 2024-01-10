@@ -1,0 +1,168 @@
+body {
+  direction: rtl;
+}
+
+::ng-deep .card-container p-panel {
+  max-width: 33.33%;
+}
+
+.p-panel.p-panel-toggleable .p-panel-header {
+  width: 400px;
+
+}
+
+.p-panel .p-panel-content {
+  width: 400px;
+}
+
+.p-panel .p-panel-footer {
+  width: 400px;
+}
+
+.p-message.p-message-success {
+  width: 400px;
+}
+
+.p-tabview .p-tabview-nav {
+  background: #ffffff;
+  border: 1px solid #dee2e6;
+  border-width: -1px 0 2px 0;
+  width: 500px;
+}
+
+.p-tabview-nav {
+  min-width: 0%;
+  width: 300px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.p-tabmenu .p-tabmenu-nav .p-tabmenuitem.p-highlight .p-menuitem-link {
+  background: #f4f5ef;
+  border-color: #a06274;
+  color: #a06274;
+}
+
+.p-tabmenu .p-tabmenu-nav {
+  background: #f4f5ef;
+}
+
+.p-tabmenu .p-tabmenu-nav .p-tabmenuitem .p-menuitem-link {
+  background: #f4f5ef;
+}
+
+.p-button.p-button-success {
+  background-color: #a06274;
+  border: #a06274;
+}
+
+.p-toolbar {
+  background-color: #3d4335;
+}
+
+.title {
+  color: #f4f5ef;
+}
+
+.p-button.p-button-warning {
+  background-color: #df849e;
+  border: #df849e;
+}
+
+.p-panel .p-panel-header {
+  background: #f4f5ef;
+}
+
+.p-panel .p-panel-header .p-panel-header-icon {
+  color: #a26874;
+}
+
+.p-tabview .p-tabview-nav {
+  background: #3d4335;
+}
+
+.p-tabview .p-tabview-nav li .p-tabview-nav-link {
+  background: #3d4335;
+  color: #f4f5ef;
+}
+
+.p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link {
+  border-color: #976574;
+  color: #976574;
+}
+
+.p-orderlist-controls {
+  visibility: hidden;
+}
+
+.p-dropdown .p-dropdown-trigger {
+  color: #976574;
+}
+
+.p-button.p-button-danger {
+  background-color: #ce6081;
+  border-color: #ce6081;
+
+}
+
+.p-tabmenu .p-tabmenu-nav {
+
+  height: 3cm;
+}
+
+.p-inputnumber-buttons-horizontal .p-inputnumber-input {
+  width: 1.5cm;
+}
+
+.p-selectbutton .p-button.p-highlight {
+  background-color: #ce6081;
+  border: #ce6081;
+}
+
+.p-badge {
+  background-color: #ce6081;
+}
+
+.custom-password-field {
+  width: 100%;
+}
+
+.p-datatable .p-datatable-tbody>tr>td {
+  text-align: right;
+}
+
+.p-datatable .p-datatable-thead>tr>th {
+  text-align: right;
+}
+
+.p-button.p-button-outlined {
+  background-color: transparent;
+  color: #a26d78;
+  border: 1px solid;
+}
+.p-button.such{
+  background-color:#976574;
+}
+.p-button.p-button-secondary, .p-buttonset.p-button-secondary > .p-button, .p-splitbutton.p-button-secondary > .p-button {
+  background:#976574;
+  border: 1px solid #976574;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.p-button.p-button-help{
+  background-color: #df849e;
+  border:1px solid #df849e;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.p-button.p-button-info {
+  border: 1px solid #976574;
+  color:#f4f5ef;
+  background: #976574;
+}
+
+.p-fluid .p-inputtext .idInput{
+  width: 15vw;
+}

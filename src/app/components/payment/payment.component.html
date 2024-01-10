@@ -1,0 +1,52 @@
+
+<!-- <p-toast class="pToast" ></p-toast> -->
+<p-toolbar styleClass="mb-4">
+    <ng-template id="title" pTemplate="left">
+        <h1 class="title"> דף תשלום </h1>
+    </ng-template>
+</p-toolbar>
+
+
+<div id="payment-Div" dir="rtl" class="surface-card p-4 shadow-2 border-round w-full lg:w-6">
+    <div>    
+
+        <img src="assets/images/login logo.jpg" alt="Image" height="50" class="mb-3">
+        <div class="text-900 text-3xl font-medium mb-3">פרטי תשלום</div>
+        <i for="email1" class="block text-900 font-medium mb-2 pi pi-at"> אימייל</i>
+        <input id="email1" type="text" placeholder="כתובת אימייל" pInputText class="w-full mb-3" [(ngModel)]="emailPay">
+        <small class="p-error" *ngIf="submitted  &&emailPay&&!validateEmail(emailPay)"> פורמט אימייל שגוי.</small>
+        <small class="p-error" *ngIf="submitted && !emailPay ">שדה חובה.</small>
+ 
+        <i for="password1" class="block text-900 font-medium mb-2 pi pi-lock"> סיסמא</i>
+        <input id="password1" type="password" placeholder="סיסמא" pInputText class="w-full mb-3" [(ngModel)]="passwordPay">
+        <br>
+        <small class="p-error" *ngIf="submitted && !passwordPay">שדה חובה.</small>
+
+        <i class="block text-900 font-medium mb-2 pi pi-credit-card"> מספר כרטיס אשראי</i>
+        <p-inputMask dir="ltr" mask="9999 9999 9999 9999" placeholder="9999 9999 9999 9999" [(ngModel)]="creditCardPay"></p-inputMask>
+        <br>
+        <small class="p-error" *ngIf="submitted &&  !creditCardPay">שדה חובה.</small>
+
+        <i class="block text-900 font-medium mb-2 pi pi-check-circle"> 3 ספרות </i>
+        <p-inputMask dir="ltr" mask="999" placeholder="cvv" [(ngModel)]="cvvPay"></p-inputMask>
+        <br>
+        <small class="p-error" *ngIf="submitted && !cvvPay ">שדה חובה.</small>
+
+        <i class="block text-900 font-medium mb-2 pi pi-calendar"> תוקף</i>
+        <p-calendar dir="ltr" placeholder="01/01" [(ngModel)]="datePay" dateFormat="mm/y"></p-calendar> 
+        <br>
+        <small class="p-error" *ngIf="submitted && !datePay ">שדה חובה.</small> 
+
+        <i class="block text-900 font-medium mb-2 pi pi-exclamation-circle"> תעודת זהות</i>
+        <p-inputMask dir="ltr" mask="999999999" placeholder="*********"[(ngModel)]="idPay"></p-inputMask> 
+            <br>   
+        <small class="p-error" *ngIf="submitted &&  !idPay">שדה חובה.</small>   
+        <br>
+        <br>
+        <button pButton pRipple label="אישור תשלום" icon=" pi pi-check" class="w-full"
+            (click)="confirmPyment()"></button>
+
+
+
+    </div>
+</div>
